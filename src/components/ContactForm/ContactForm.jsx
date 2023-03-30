@@ -1,26 +1,24 @@
 import { nanoid } from 'nanoid';
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { Button, Form, Input, Label } from './ContactFormStyled';
 
-export default function ContactForm() {
+export default function ContactForm({ addContact, contacts }) {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
-  findSimilarContact = () => {
-    const { contacts } = this.props;
-    return contacts.find(contact => contact.name === this.state.name);
+  const findSimilarContact = () => {
+    return contacts.find(contact => contact.name === name);
   };
 
-  handleSubmit = event => {
+  const handleSubmit = event => {
     event.preventDefault();
-    const { addContact } = this.props;
-    const { name, number } = this.state;
     const id = nanoid();
     const newContact = { id, name, number };
-    this.findSimilarContact()
-      ? alert(`${this.state.name} is already in contacts.`)
+    findSimilarContact()
+      ? alert(`${name} is already in contacts.`)
       : addContact(newContact);
-    this.setState({ name: '', number: '' });
+    setName('');
+    setNumber('');
   };
 
   return (

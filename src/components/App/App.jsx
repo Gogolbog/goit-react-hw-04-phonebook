@@ -33,15 +33,13 @@ export default function App() {
     serFilter(event.target.value);
   };
 
-  const getFilteredContasts = () => {
-    const normalizedFilter = filter.toLocaleLowerCase();
-
+  const getFilteredContacts = (contacts, filter) => {
     return contacts.filter(contact =>
-      contact.name.toLocaleLowerCase().includes(normalizedFilter)
+      contact.name.toLowerCase().includes(filter.toLowerCase())
     );
   };
 
-  const filteredContacts = getFilteredContacts();
+  const filteredContacts = getFilteredContacts(contacts, filter);
 
   return (
     <PageWrapper>
@@ -54,7 +52,7 @@ export default function App() {
       <Filter onChange={handleChangeFilter} value={filter} />
 
       <ContactList
-        filtredContact={filteredContacts}
+        filtredContacts={filteredContacts}
         onDeleteContact={deleteContact}
       />
     </PageWrapper>

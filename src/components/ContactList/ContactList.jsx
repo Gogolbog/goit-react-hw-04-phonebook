@@ -1,13 +1,16 @@
-import { ContactListWrapper } from "./ContactListStyled"
+import { ContactListWrapper } from './ContactListStyled';
 
-export const ContactList = ({ filtredContact, onDeleteContact }) => {
-    return (
-        <ContactListWrapper>
-            {filtredContact.map(({ id, name, number }) => (
-                <li key={id}>{name}: {number}
-                    <button type="button" onClick={() => onDeleteContact(id)}>Delete</button>
-                </li>
-            ))}
-        </ContactListWrapper>
-    )
-}
+export const ContactList = ({ filtredContacts, onDeleteContact }) => {
+  return (
+    <ContactListWrapper>
+      {filtredContacts.map(({ id, name, number }) => (
+        <li key={id}>
+          {name}: {number}
+          <button type="button" onClick={() => onDeleteContact(id)}>
+            Delete
+          </button>
+        </li>
+      ))}
+    </ContactListWrapper>
+  );
+};
